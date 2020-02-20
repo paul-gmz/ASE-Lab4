@@ -1,0 +1,73 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item *ngIf="!isRegistered">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input [(ngModel)]="name" type="text" name="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="email" type="text" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input
+          [(ngModel)]="password"
+          name="password"
+          type="password"
+        ></ion-input>
+      </ion-item>
+      <ion-grid>
+        <ion-row
+          *ngIf="isRegistered"
+          class="ion-justify-content-end ion-margin"
+        >
+          <ion-button
+            type="button"
+            fill="outline"
+            size="small"
+            (click)="logIn()"
+            >Log In</ion-button
+          >
+        </ion-row>
+        <ion-row
+          *ngIf="!isRegistered"
+          class="ion-justify-content-end ion-margin"
+        >
+          <ion-button
+            type="button"
+            fill="outline"
+            size="small"
+            (click)="signUp()"
+            >Sign Up</ion-button
+          >
+        </ion-row>
+        <ion-row
+          class="ion-justify-content-center ion-margin-top ion-padding-top"
+        >
+          <ion-label>
+            {{
+              isRegistered
+                ? "Don't have an account yet?"
+                : "Already have an account?"
+            }}
+          </ion-label>
+        </ion-row>
+        <ion-row *ngIf="isRegistered" class="ion-justify-content-center">
+          <ion-button fill="clear" (click)="displayRegister()"
+            >Sign up</ion-button
+          >
+        </ion-row>
+        <ion-row *ngIf="!isRegistered" class="ion-justify-content-center">
+          <ion-button fill="clear" (click)="displayLogIn()">Log in</ion-button>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
