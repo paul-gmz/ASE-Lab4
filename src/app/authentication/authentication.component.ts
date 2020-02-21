@@ -34,15 +34,6 @@ export class AuthenticationComponent implements OnInit {
 
   ngOnInit() {}
 
-  showPopUp(alerttitle: string, text: string): void {
-    this.alertController.create({
-      header: "Alert",
-      subHeader: "Subtitle",
-      message: "This is an alert message.",
-      buttons: ["OK"]
-    });
-  }
-
   displayRegister(): void {
     this.isRegistered = false;
     this.title = "Sign Up";
@@ -75,6 +66,8 @@ export class AuthenticationComponent implements OnInit {
           "isAuthenticated",
           JSON.stringify({ email: this.email, isLoggedIn: true })
         );
+        this.email = "";
+        this.password = "";
         this.router.navigateByUrl("home");
       }
     }

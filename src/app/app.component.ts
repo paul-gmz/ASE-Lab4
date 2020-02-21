@@ -10,9 +10,6 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
   styleUrls: ["app.component.scss"]
 })
 export class AppComponent {
-  isAuthenticated: boolean = false;
-  userName: string = "";
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -26,17 +23,5 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-  }
-
-  onActivate(component) {
-    let authenticatedUser = JSON.parse(
-      sessionStorage.getItem("isAuthenticated")
-    );
-
-    if (authenticatedUser !== null && authenticatedUser.isLoggedIn) {
-      this.isAuthenticated = true;
-      let userEmail = authenticatedUser.email;
-      this.userName = JSON.parse(localStorage.getItem(userEmail)).name;
-    }
   }
 }
